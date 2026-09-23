@@ -31,7 +31,7 @@ export const translations = {
     success: "Thank you! I'll be in touch within a few hours.",
     failure: "Something went wrong. Please try again in a few minutes.",
     notConfigured: "Online messages are temporarily unavailable. Please try again soon.",
-    footerTitle: "Life Insurance Agent", rights: "All rights reserved.", connect: "Connect Now",
+    footerTitle: "Life Insurance Agent", rights: "All rights reserved.",
     footerLinks: { privacy: "Privacy Policy", faq: "FAQ", back: "Back to home" },
   },
   es: {
@@ -64,7 +64,7 @@ export const translations = {
     success: "¡Gracias! Me pondré en contacto contigo en unas horas.",
     failure: "Algo salió mal. Inténtalo de nuevo en unos minutos.",
     notConfigured: "Los mensajes en línea no están disponibles por el momento. Inténtalo de nuevo pronto.",
-    footerTitle: "Agente de Seguros de Vida", rights: "Todos los derechos reservados.", connect: "Conecta Ahora",
+    footerTitle: "Agente de Seguros de Vida", rights: "Todos los derechos reservados.",
     footerLinks: { privacy: "Política de Privacidad", faq: "Preguntas Frecuentes", back: "Volver al inicio" },
   },
   pt: {
@@ -97,7 +97,7 @@ export const translations = {
     success: "Obrigado! Entrarei em contato dentro de algumas horas.",
     failure: "Algo deu errado. Tente novamente em alguns minutos.",
     notConfigured: "As mensagens on-line estão temporariamente indisponíveis. Tente novamente em breve.",
-    footerTitle: "Agente de Seguros de Vida", rights: "Todos os direitos reservados.", connect: "Conecte-se Agora",
+    footerTitle: "Agente de Seguros de Vida", rights: "Todos os direitos reservados.",
     footerLinks: { privacy: "Política de Privacidade", faq: "Perguntas Frequentes", back: "Voltar ao início" },
   },
 } as const;

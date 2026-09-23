@@ -201,7 +201,6 @@ function Index() {
 
       <SiteFooter language={language} />
 
-      <aside className="fixed right-0 top-1/2 z-30 hidden -translate-y-1/2 items-center gap-4 xl:flex xl:flex-col"><span className="h-14 w-px bg-gold" /><span className="rotate-90 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.15em] text-navy">{t.connect}</span><span className="mt-12 h-14 w-px bg-gold" /></aside>
     </main>
   );
 }
