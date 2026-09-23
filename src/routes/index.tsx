@@ -124,7 +124,7 @@ function Index() {
             <Logo className="h-14 w-12 shrink-0" />
             <span className="min-w-0"><span className="block truncate font-display text-base text-gold sm:text-xl">MATHEUS CAMPOS</span><span className="mt-1 block max-w-62 text-[8px] font-bold uppercase leading-3 tracking-[0.15em] text-white sm:text-[9px]">{t.subtitle}</span></span>
           </a>
-          <nav className="hidden items-center gap-9 text-sm font-medium text-white lg:flex"><a href="#about" className="hover:text-gold">{t.nav.about}</a><a href="#services" className="hover:text-gold">{t.nav.services}</a><a href="#contact" className="hover:text-gold">{t.nav.contact}</a></nav>
+          <nav className="hidden items-center gap-9 text-sm font-medium text-white lg:flex"><a href="#services" className="hover:text-gold">{t.nav.services}</a><a href="#about" className="hover:text-gold">{t.nav.about}</a><a href="#contact" className="hover:text-gold">{t.nav.contact}</a></nav>
           <div className="hidden justify-self-end lg:flex"><LanguageSwitcher language={language} choose={chooseLanguage} /></div>
           <Button variant="ghost" size="icon" onClick={() => setMenuOpen(true)} aria-label={t.nav.menu} className="text-white hover:bg-navy-dark hover:text-white lg:hidden"><Menu size={25} /></Button>
         </div>
@@ -132,7 +132,7 @@ function Index() {
 
       {menuOpen && <div className="fixed inset-0 z-50 flex flex-col bg-navy px-6 py-6 text-white lg:hidden">
         <div className="flex items-center justify-between"><div className="flex items-center gap-3"><img src={headshotAsset.url} alt="Matheus Campos" className="h-12 w-12 rounded-full border-2 border-gold object-cover" /><span className="font-display text-sm">MATHEUS CAMPOS</span></div><Button variant="ghost" size="icon" onClick={() => setMenuOpen(false)} aria-label={t.nav.close} className="text-white hover:bg-navy-dark"><X /></Button></div>
-        <nav className="flex flex-1 flex-col items-center justify-center gap-8 font-display text-3xl"><a href="#about" onClick={() => setMenuOpen(false)}>{t.nav.about}</a><a href="#services" onClick={() => setMenuOpen(false)}>{t.nav.services}</a><a href="#contact" onClick={() => setMenuOpen(false)}>{t.nav.contact}</a></nav>
+        <nav className="flex flex-1 flex-col items-center justify-center gap-8 font-display text-3xl"><a href="#services" onClick={() => setMenuOpen(false)}>{t.nav.services}</a><a href="#about" onClick={() => setMenuOpen(false)}>{t.nav.about}</a><a href="#contact" onClick={() => setMenuOpen(false)}>{t.nav.contact}</a></nav>
         <div className="flex justify-center"><LanguageSwitcher language={language} choose={chooseLanguage} /></div>
       </div>}
 
