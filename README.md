@@ -1,29 +1,22 @@
-# Welcome to your Lovable project
+# Matheus Campos — personal site
 
-This project was built with [Lovable](https://lovable.dev).
+Single-page site for Matheus Campos, licensed life insurance agent (EN / ES / PT).
 
-## Build with Lovable
-
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+Originally built in Lovable; now hosted on Vercel with GitHub auto-deploy — every push to `main` goes live.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
 
 ## Built with
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+- TanStack Start (Nitro, `vercel` preset — see `vite.config.ts`)
+- TypeScript, React, Tailwind CSS
+
+## Notes
+
+- Photos live in `public/images/`.
+- The contact form posts to Web3Forms; set `WEB3FORMS_ACCESS_KEY` in `src/routes/index.tsx`.
