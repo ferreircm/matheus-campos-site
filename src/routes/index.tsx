@@ -165,21 +165,21 @@ function Index() {
         </Reveal>
       </section>
 
-      <section id="contact" className="relative overflow-hidden bg-navy py-20 text-white sm:py-28">
+      <section id="contact" className="relative overflow-hidden bg-white py-20 sm:py-28">
         <SectionMarker number="02" />
         <div className="relative mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:px-16">
           <Reveal className="lg:pt-6">
             <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold">{t.contactEyebrow}</p>
-            <h2 className="mt-5 font-display text-4xl leading-tight sm:text-5xl">{t.contactHeading}<span className="block italic text-gold">{t.contactHeadingAccent}</span></h2>
-            <p className="mt-6 max-w-md leading-8 text-light-gray">{t.contactText}</p>
-            <p className="mt-10 max-w-sm text-xs leading-5 text-light-gray/70">{t.contactNote}</p>
+            <h2 className="mt-5 font-display text-4xl leading-tight text-navy sm:text-5xl">{t.contactHeading}<span className="block italic text-gold">{t.contactHeadingAccent}</span></h2>
+            <p className="mt-6 max-w-md leading-8 text-body-text">{t.contactText}</p>
+            <p className="mt-10 max-w-sm text-xs leading-5 text-body-text/70">{t.contactNote}</p>
           </Reveal>
           <Reveal>
-            <div className="rounded-md border border-white/10 bg-navy-dark p-6 shadow-2xl sm:p-10">
-              {formState === "success" ? <div role="status" className="border-l-4 border-gold py-2 pl-6 font-display text-2xl leading-10">{t.success}</div> : <>
+            <div className="rounded-md border border-body-text/15 bg-white p-6 shadow-2xl sm:p-10">
+              {formState === "success" ? <div role="status" className="border-l-4 border-gold py-2 pl-6 font-display text-2xl leading-10 text-navy">{t.success}</div> : <>
                 <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold">{t.formEyebrow}</p>
-                <h3 className="mt-4 font-display text-3xl leading-tight">{t.formTitle}</h3>
-                <p className="mt-4 text-sm leading-6 text-light-gray">{t.formIntro}</p>
+                <h3 className="mt-4 font-display text-3xl leading-tight text-navy">{t.formTitle}</h3>
+                <p className="mt-4 text-sm leading-6 text-body-text">{t.formIntro}</p>
                 <form id="contact-form" onSubmit={submitForm} noValidate className="mt-8 grid gap-5 sm:grid-cols-2">
                   <FormField label={t.firstName} name="firstName" required maxLength={50} autoComplete="given-name" />
                   <FormField label={t.lastName} name="lastName" required maxLength={50} autoComplete="family-name" />
@@ -187,11 +187,11 @@ function Index() {
                   <FormField label={t.cellPhone} name="phone" type="tel" required maxLength={30} autoComplete="tel" />
                   <SelectField label={t.state} name="state" required placeholder={t.selectState} options={states} />
                   <SelectField label={t.interest} name="interest" value={selectedInterest} onChange={setSelectedInterest} placeholder={t.selectInterest} options={t.interests} />
-                  <label className="grid gap-2 text-xs text-light-gray sm:col-span-2">{t.messageLabel}<textarea name="message" rows={4} maxLength={2000} placeholder={t.messagePlaceholder} className={`${fieldClass} h-auto py-3`} /></label>
+                  <label className="grid gap-2 text-xs font-medium text-navy sm:col-span-2">{t.messageLabel}<textarea name="message" rows={4} maxLength={2000} placeholder={t.messagePlaceholder} className={`${fieldClass} h-auto py-3`} /></label>
                   <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
-                  {formMessage && <p role="alert" className="text-sm text-gold sm:col-span-2">{formMessage}</p>}
-                  <p className="text-xs leading-5 text-light-gray/70 sm:col-span-2">{t.consentStart}<Link to="/privacy" className="text-gold underline underline-offset-2 hover:text-white">{t.privacyLink}</Link>{t.consentEnd}</p>
-                  <Button type="submit" disabled={formState === "sending"} size="lg" className="h-12 rounded-full bg-gold px-7 font-bold uppercase text-navy hover:bg-white sm:col-span-2 sm:w-fit"><Send />{formState === "sending" ? t.sending : t.send}</Button>
+                  {formMessage && <p role="alert" className="text-sm font-medium text-navy sm:col-span-2">{formMessage}</p>}
+                  <p className="text-xs leading-5 text-body-text/80 sm:col-span-2">{t.consentStart}<Link to="/privacy" className="text-teal underline underline-offset-2 hover:text-navy">{t.privacyLink}</Link>{t.consentEnd}</p>
+                  <Button type="submit" disabled={formState === "sending"} size="lg" className="h-12 rounded-full bg-teal px-7 font-bold uppercase text-white hover:bg-navy-dark sm:col-span-2 sm:w-fit"><Send />{formState === "sending" ? t.sending : t.send}</Button>
                 </form>
               </>}
             </div>
@@ -209,7 +209,7 @@ function Index() {
 function SectionMarker({ number }: { number: string }) { return <div className="absolute left-3 top-24 hidden items-center gap-3 lg:flex"><span className="font-display text-sm text-gold">{number}</span><span className="h-px w-8 bg-gold" /></div>; }
 function Watermark({ text }: { text: string }) { return <div aria-hidden="true" className="absolute -right-28 top-1/2 hidden -translate-y-1/2 rotate-90 font-display text-7xl text-navy opacity-[0.05] lg:block">{text}</div>; }
 function TextColumn({ title, paragraphs }: { title: string; paragraphs: readonly string[] }) { return <div><h2 className="font-display text-3xl text-navy sm:text-4xl">{title}</h2><div className="mt-4 h-0.5 w-12 bg-gold" />{paragraphs.map((text) => <p key={text} className="mt-5 leading-8 text-body-text">{text}</p>)}</div>; }
-const fieldClass = "h-12 w-full rounded-md border border-white/15 bg-navy px-4 text-sm text-white outline-none transition placeholder:text-light-gray/40 focus:border-gold";
-function FormField({ label, name, type = "text", required = false, maxLength, autoComplete }: { label: string; name: string; type?: string; required?: boolean; maxLength?: number; autoComplete?: string }) { return <label className="grid gap-2 text-xs text-light-gray">{label}<input name={name} type={type} required={required} maxLength={maxLength} autoComplete={autoComplete} className={fieldClass} /></label>; }
+const fieldClass = "h-12 w-full rounded-md border border-body-text/25 bg-white px-4 text-sm text-body-text outline-none transition placeholder:text-body-text/50 focus:border-teal";
+function FormField({ label, name, type = "text", required = false, maxLength, autoComplete }: { label: string; name: string; type?: string; required?: boolean; maxLength?: number; autoComplete?: string }) { return <label className="grid gap-2 text-xs font-medium text-navy">{label}<input name={name} type={type} required={required} maxLength={maxLength} autoComplete={autoComplete} className={fieldClass} /></label>; }
 // Controlled only when a value is passed (Interest is pre-filled by the service cards); otherwise uncontrolled so it can still be changed.
-function SelectField({ label, name, required = false, value, onChange, placeholder, options }: { label: string; name: string; required?: boolean; value?: string; onChange?: (value: string) => void; placeholder: string; options: readonly string[] }) { const valueProps = value === undefined ? { defaultValue: "" } : { value, onChange: (event: ChangeEvent<HTMLSelectElement>) => onChange?.(event.target.value) }; return <label className="grid gap-2 text-xs text-light-gray">{label}<select name={name} required={required} {...valueProps} className={fieldClass}><option value="">{placeholder}</option>{options.map(option => <option key={option} value={option}>{option}</option>)}</select></label>; }
+function SelectField({ label, name, required = false, value, onChange, placeholder, options }: { label: string; name: string; required?: boolean; value?: string; onChange?: (value: string) => void; placeholder: string; options: readonly string[] }) { const valueProps = value === undefined ? { defaultValue: "" } : { value, onChange: (event: ChangeEvent<HTMLSelectElement>) => onChange?.(event.target.value) }; return <label className="grid gap-2 text-xs font-medium text-navy">{label}<select name={name} required={required} {...valueProps} className={fieldClass}><option value="">{placeholder}</option>{options.map(option => <option key={option} value={option}>{option}</option>)}</select></label>; }
