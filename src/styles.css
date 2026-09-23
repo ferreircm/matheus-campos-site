@@ -1,0 +1,93 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Roboto", sans-serif;
+  --font-display: "Libre Baskerville", serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--white);
+  --color-foreground: var(--navy);
+  --color-card: var(--white);
+  --color-card-foreground: var(--navy);
+  --color-popover: var(--white);
+  --color-popover-foreground: var(--navy);
+  --color-primary: var(--teal);
+  --color-primary-foreground: var(--white);
+  --color-secondary: var(--light-gray);
+  --color-secondary-foreground: var(--navy);
+  --color-muted: var(--light-gray);
+  --color-muted-foreground: var(--body-text);
+  --color-accent: var(--gold);
+  --color-accent-foreground: var(--navy);
+  --color-destructive: var(--navy-dark);
+  --color-destructive-foreground: var(--white);
+  --color-border: var(--light-gray);
+  --color-input: var(--light-gray);
+  --color-ring: var(--teal);
+  --color-navy: var(--navy);
+  --color-navy-dark: var(--navy-dark);
+  --color-teal: var(--teal);
+  --color-gold: var(--gold);
+  --color-white: var(--white);
+  --color-light-gray: var(--light-gray);
+  --color-body-text: var(--body-text);
+}
+
+:root {
+  --radius: 0.5rem;
+  --navy: #2c3e50;
+  --navy-dark: #22313f;
+  --teal: #1ba6a6;
+  --gold: #c9a227;
+  --white: #ffffff;
+  --light-gray: #f4f6f8;
+  --body-text: #5a6772;
+}
+
+@layer base {
+  * { border-color: var(--light-gray); }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--white);
+    color: var(--body-text);
+    font-family: var(--font-sans);
+  }
+  ::selection { background: var(--gold); color: var(--navy); }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+  &.is-visible { opacity: 1; transform: translateY(0); }
+}
+
+@utility service-pattern {
+  background-color: var(--light-gray);
+  background-image:
+    linear-gradient(30deg, color-mix(in srgb, var(--navy) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(150deg, color-mix(in srgb, var(--navy) 6%, transparent) 1px, transparent 1px);
+  background-size: 32px 56px;
+}
+
+@utility hero-ring {
+  stroke-dasharray: 1320;
+  stroke-dashoffset: 1320;
+  animation: draw-ring 1.5s ease-out forwards;
+}
+
+@keyframes draw-ring { to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-ring { stroke-dashoffset: 0; animation: none; }
+}
