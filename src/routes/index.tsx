@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import {
-  CalendarDays, Download, HeartHandshake, Home, Mail, MapPin, Menu, Phone,
-  Send, Shield, TrendingUp, UserRound, Users, X,
+  CalendarDays, HeartHandshake, Home, MapPin, Menu,
+  Send, Shield, TrendingUp, Users, X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/Logo";
@@ -83,12 +83,6 @@ function Index() {
     setMenuOpen(false);
     window.setTimeout(() => document.querySelector("#contact-form")?.scrollIntoView({ behavior: "smooth", block: "center" }), 0);
   };
-  const downloadVCard = () => {
-    const card = ["BEGIN:VCARD", "VERSION:3.0", "FN:Matheus Campos", `TITLE:${t.title}`, "TEL;TYPE=CELL:+1-318-200-8892", "EMAIL:mcampos.finance@gmail.com", "END:VCARD"].join("\r\n");
-    const url = URL.createObjectURL(new Blob([card], { type: "text/vcard;charset=utf-8" }));
-    const anchor = document.createElement("a");
-    anchor.href = url; anchor.download = "Matheus-Campos.vcf"; anchor.click(); URL.revokeObjectURL(url);
-  };
   const submitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -124,13 +118,6 @@ function Index() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-body-text">
-      <div className="bg-navy text-white">
-        <div className="mx-auto flex min-h-10 max-w-7xl items-center justify-end gap-4 px-4 py-2 lg:px-10">
-          <a href="mailto:mcampos.finance@gmail.com" className="hidden items-center gap-2 text-xs transition-opacity hover:opacity-75 sm:flex"><Mail size={14} />mcampos.finance@gmail.com</a>
-          <a href="tel:+13182008892" className="inline-flex items-center gap-2 rounded-full bg-teal px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-navy-dark"><Phone size={14} />318-200-8892</a>
-        </div>
-      </div>
-
       <header className="relative z-40 border-b border-light-gray bg-white">
         <div className="mx-auto flex h-22 max-w-7xl items-center justify-between px-4 lg:px-10">
           <a href="#top" className="flex min-w-0 items-center gap-3" aria-label="Matheus Campos home">
@@ -161,7 +148,6 @@ function Index() {
             <p className="mt-7 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.15em] lg:justify-start"><MapPin size={16} className="text-gold" />{t.nationwide}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
               <Button onClick={() => goToContact()} size="lg" className="h-12 rounded-full bg-teal px-6 font-bold uppercase text-white hover:bg-navy-dark"><CalendarDays />{t.freeQuote}</Button>
-              <Button onClick={downloadVCard} size="lg" variant="outline" className="h-12 rounded-full border-2 border-gold bg-transparent px-6 font-bold uppercase text-white hover:bg-gold hover:text-navy"><UserRound />{t.saveContact}</Button>
             </div>
           </div>
           <div className="relative order-1 flex min-h-[48vh] items-end justify-center self-stretch pt-8 lg:order-2 lg:min-h-0 lg:pt-12">
@@ -190,8 +176,7 @@ function Index() {
       <section id="contact" className="relative overflow-hidden bg-white py-20 sm:py-28">
         <SectionMarker number="02" /><Watermark text="CONTACT" />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-16"><Reveal><h2 className="font-display text-4xl text-navy sm:text-5xl">{t.letsTalk}</h2><p className="mt-5 max-w-2xl leading-7 text-body-text">{t.contactSubtext}</p></Reveal>
-          <div className="mt-12 grid gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
-            <Reveal className="space-y-7"><ContactRow icon={Phone} label={t.phone} value="318-200-8892" href="tel:+13182008892" /><ContactRow icon={Mail} label={t.email} value="mcampos.finance@gmail.com" href="mailto:mcampos.finance@gmail.com" /></Reveal>
+          <div className="mt-12 max-w-3xl">
             <Reveal>{formState === "success" ? <div role="status" className="border-l-4 border-teal bg-light-gray p-8 font-display text-2xl leading-10 text-navy">{t.success}</div> : <form id="contact-form" onSubmit={submitForm} noValidate className="grid gap-5 sm:grid-cols-2">
               <FormField label={t.name} name="name" required maxLength={100} />
               <FormField label={t.phone} name="phone" type="tel" required maxLength={30} />
@@ -222,6 +207,5 @@ function DecorativeSquares() { return <div aria-hidden="true" className="absolut
 function SectionMarker({ number }: { number: string }) { return <div className="absolute left-3 top-24 hidden items-center gap-3 lg:flex"><span className="font-display text-sm text-gold">{number}</span><span className="h-px w-8 bg-gold" /></div>; }
 function Watermark({ text }: { text: string }) { return <div aria-hidden="true" className="absolute -right-28 top-1/2 hidden -translate-y-1/2 rotate-90 font-display text-7xl text-navy opacity-[0.05] lg:block">{text}</div>; }
 function TextColumn({ title, text }: { title: string; text: string }) { return <div><h2 className="font-display text-2xl text-navy">{title}</h2><div className="mt-4 h-0.5 w-12 bg-gold" /><p className="mt-5 leading-8 text-body-text">{text}</p></div>; }
-function ContactRow({ icon: Icon, label, value, href }: { icon: typeof Phone; label: string; value: string; href: string }) { return <a href={href} className="group flex items-center gap-4"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold text-gold transition group-hover:bg-gold group-hover:text-navy"><Icon size={20} /></span><span className="min-w-0"><span className="block text-[10px] font-bold uppercase tracking-[0.15em] text-navy">{label}</span><span className="mt-1 block break-all text-sm text-body-text sm:text-base">{value}</span></span></a>; }
 function FormField({ label, name, type = "text", required = false, maxLength }: { label: string; name: string; type?: string; required?: boolean; maxLength?: number }) { return <label className="grid gap-2 text-xs font-bold uppercase tracking-[0.15em] text-navy">{label}<input name={name} type={type} required={required} maxLength={maxLength} className="h-12 rounded-lg border border-light-gray bg-white px-4 text-sm font-normal normal-case tracking-normal text-body-text outline-none transition focus:border-teal" /></label>; }
 function SelectField({ label, name, required = false, value, onChange, placeholder, options }: { label: string; name: string; required?: boolean; value: string; onChange?: (value: string) => void; placeholder: string; options: readonly string[] }) { return <label className="grid gap-2 text-xs font-bold uppercase tracking-[0.15em] text-navy">{label}<select name={name} required={required} value={value} onChange={(event) => onChange?.(event.target.value)} className="h-12 rounded-lg border border-light-gray bg-white px-4 text-sm font-normal normal-case tracking-normal text-body-text outline-none transition focus:border-teal"><option value="">{placeholder}</option>{options.map(option => <option key={option} value={option}>{option}</option>)}</select></label>; }
