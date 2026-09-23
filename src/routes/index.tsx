@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
   loader: () => getRequestOrigin(),
   head: ({ loaderData }) => {
     const image = `${loaderData}${ogAsset.url}`;
-    const title = "Matheus Campos | Licensed Life Insurance Agent";
+    const title = "Matheus Campos | Life Insurance Agent";
     const description = "Protecting What Matters Most. Life insurance, IUL, and family protection in English, Spanish, and Portuguese, serving families in all 50 states.";
     return {
       meta: [
