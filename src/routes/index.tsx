@@ -152,8 +152,9 @@ function Index() {
         </div>
       </section>
 
-      <section id="services" className="service-pattern relative flow-root pb-20 sm:pb-24">
-        <div className="relative z-20 mx-auto -mt-24 grid max-w-7xl grid-cols-2 gap-3 px-4 md:grid-cols-5 md:gap-4 lg:-mt-32 lg:gap-5 lg:px-10">
+      <section className="service-pattern relative flow-root pb-20 sm:pb-24">
+        {/* Anchor on the cards, not the section: the cards overlap the hero, so the section top would cut them off. */}
+        <div id="services" className="relative z-20 mx-auto -mt-24 scroll-mt-6 grid max-w-7xl grid-cols-2 gap-3 px-4 md:grid-cols-5 md:gap-4 lg:-mt-32 lg:gap-5 lg:px-10">
           {t.services.map((label, index) => { const Icon = serviceIcons[index] ?? Shield; return <button key={label} type="button" onClick={() => goToContact(t.interests[index])} className={`group relative flex min-h-44 flex-col items-center justify-center overflow-hidden rounded-md bg-white p-4 text-center shadow-xl transition duration-300 hover:-translate-y-1 sm:min-h-48 md:p-3 lg:p-4 ${index === 4 ? "col-span-2 mx-auto w-[calc(50%-0.375rem)] md:col-span-1 md:mx-0 md:w-auto" : ""}`}><Icon size={40} className="text-gold" strokeWidth={1.6} /><span className="mt-5 font-display text-sm leading-6 text-navy sm:text-base md:text-sm lg:text-base">{label}</span><span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-teal transition-transform group-hover:scale-x-100" /></button>; })}
         </div>
       </section>
