@@ -137,20 +137,17 @@ function Index() {
       </div>}
 
       <section id="top" className="relative min-h-[90vh] overflow-hidden bg-navy text-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy to-navy-dark" />
-        <DecorativeSquares />
-        <div className="relative mx-auto grid min-h-[90vh] max-w-7xl grid-cols-1 items-center px-5 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
-          <div className="order-2 z-10 pb-28 pt-8 text-center lg:order-1 lg:pb-36 lg:pt-14 lg:text-left">
+        <img src={heroAsset.url} alt="Matheus Campos standing with his arms crossed" className="absolute inset-0 h-full w-full object-cover object-[62%_20%] lg:left-auto lg:w-[78%] lg:object-[70%_25%]" />
+        {/* Darken behind the text so it stays readable: bottom-up on phones, left-to-right on desktop. */}
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy via-navy/75 to-navy/10 lg:bg-gradient-to-r lg:from-navy lg:from-25% lg:via-navy/70 lg:via-45% lg:to-transparent lg:to-75%" />
+        <div className="relative mx-auto flex min-h-[90vh] max-w-7xl items-end px-5 lg:items-center lg:px-10">
+          <div className="z-10 w-full pb-28 pt-8 text-center lg:max-w-xl lg:pb-36 lg:pt-14 lg:text-left">
             <blockquote className="relative mx-auto max-w-2xl font-display text-[clamp(2rem,4vw,4.15rem)] leading-[1.25] lg:mx-0"><span className="mr-2 text-gold">“</span>{t.quote}<span className="ml-2 text-gold">”</span></blockquote>
             <p className="mt-6 text-sm font-medium text-gold sm:text-base">{t.attribution}</p>
             <p className="mt-7 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.15em] lg:justify-start"><MapPin size={16} className="text-gold" />{t.nationwide}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
               <Button onClick={() => goToContact()} size="lg" className="h-12 rounded-full bg-teal px-6 font-bold uppercase text-white hover:bg-navy-dark"><CalendarDays />{t.freeQuote}</Button>
             </div>
-          </div>
-          <div className="relative order-1 flex min-h-[48vh] items-end justify-center self-stretch pt-8 lg:order-2 lg:min-h-0 lg:pt-12">
-            <svg aria-hidden="true" viewBox="0 0 600 600" className="absolute bottom-[4%] left-1/2 w-[min(94vw,610px)] -translate-x-1/2"><circle className="hero-ring" cx="310" cy="310" r="235" fill="none" stroke="var(--gold)" strokeWidth="18" strokeLinecap="round" strokeDasharray="1220 260" transform="rotate(-38 310 310)" /></svg>
-            <img src={heroAsset.url} alt="Matheus Campos standing with his arms crossed" className="relative z-10 max-h-[58vh] w-full max-w-2xl object-contain object-bottom lg:max-h-[78vh]" />
           </div>
         </div>
       </section>
@@ -201,7 +198,6 @@ function LanguageSwitcher({ language, choose }: { language: Language; choose: (v
   return <div className="flex items-center text-[11px] font-bold text-white" aria-label="Language">{(["en", "es", "pt"] as const).map((code, index) => <span key={code} className="flex items-center"><Button type="button" variant="ghost" size="sm" onClick={() => choose(code)} aria-pressed={language === code} className={`h-8 px-2 uppercase hover:bg-transparent hover:text-gold ${language === code ? "underline decoration-gold decoration-2 underline-offset-6" : ""}`}>{code}</Button>{index < 2 && <span className="opacity-40">|</span>}</span>)}</div>;
 }
 
-function DecorativeSquares() { return <div aria-hidden="true" className="absolute inset-0 opacity-20"><span className="absolute right-[12%] top-[14%] h-3 w-3 bg-gold" /><span className="absolute right-[43%] top-[34%] h-2 w-2 bg-teal" /><span className="absolute right-[8%] top-[56%] h-5 w-5 border border-teal" /><span className="absolute right-[39%] top-[70%] h-3 w-3 border border-gold" /></div>; }
 function SectionMarker({ number }: { number: string }) { return <div className="absolute left-3 top-24 hidden items-center gap-3 lg:flex"><span className="font-display text-sm text-gold">{number}</span><span className="h-px w-8 bg-gold" /></div>; }
 function Watermark({ text }: { text: string }) { return <div aria-hidden="true" className="absolute -right-28 top-1/2 hidden -translate-y-1/2 rotate-90 font-display text-7xl text-navy opacity-[0.05] lg:block">{text}</div>; }
 function TextColumn({ title, text }: { title: string; text: string }) { return <div><h2 className="font-display text-2xl text-navy">{title}</h2><div className="mt-4 h-0.5 w-12 bg-gold" /><p className="mt-5 leading-8 text-body-text">{text}</p></div>; }
