@@ -6,8 +6,10 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/Logo";
-import { translations, type Language } from "@/i18n";
+import { LanguageSwitcher, SiteFooter } from "@/components/SiteChrome";
+import { translations } from "@/i18n";
 import { getRequestOrigin } from "@/lib/origin.functions";
+import { useLanguage } from "@/lib/use-language";
 const heroAsset = { url: "/images/matheus-office.jpg" };
 const aboutAsset = { url: "/images/matheus-library.jpg" };
 const headshotAsset = { url: "/images/matheus-headshot.webp" };
@@ -58,7 +60,7 @@ function Reveal({ children, className = "" }: { children: ReactNode; className?:
 }
 
 function Index() {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, chooseLanguage] = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedInterest, setSelectedInterest] = useState("");
   const [formState, setFormState] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -66,18 +68,10 @@ function Index() {
   const t = translations[language];
 
   useEffect(() => {
-    const saved = localStorage.getItem("matheus-language");
-    if (saved === "en" || saved === "es" || saved === "pt") setLanguage(saved);
-  }, []);
-  useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  const chooseLanguage = (next: Language) => {
-    setLanguage(next);
-    localStorage.setItem("matheus-language", next);
-  };
   const goToContact = (interest?: string) => {
     if (interest) setSelectedInterest(interest);
     setMenuOpen(false);
@@ -117,8 +111,8 @@ function Index() {
   };
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-white text-body-text">
-      <header className="relative z-40 border-b border-white/10 bg-navy">
+    <main className="min-h-screen overflow-x-clip bg-white text-body-text">
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-navy">
         <div className="mx-auto flex h-22 max-w-7xl items-center justify-between px-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-10">
           <a href="#top" className="flex min-w-0 items-center gap-3 justify-self-start" aria-label="Matheus Campos home">
             <Logo className="h-14 w-12 shrink-0" />
@@ -188,15 +182,11 @@ function Index() {
         </div>
       </section>
 
-      <footer className="bg-navy px-5 py-14 text-center text-white"><Logo className="mx-auto h-12 w-12" /><p className="mt-4 font-display text-lg">MATHEUS CAMPOS</p><p className="mt-2 text-xs text-light-gray">{t.footerTitle} • NPN: 22343676</p><p className="mt-8 text-[10px] uppercase tracking-[0.15em] text-light-gray">© {new Date().getFullYear()} Matheus Campos. {t.rights}</p></footer>
+      <SiteFooter language={language} />
 
       <aside className="fixed right-0 top-1/2 z-30 hidden -translate-y-1/2 items-center gap-4 xl:flex xl:flex-col"><span className="h-14 w-px bg-gold" /><span className="rotate-90 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.15em] text-navy">{t.connect}</span><span className="mt-12 h-14 w-px bg-gold" /></aside>
     </main>
   );
-}
-
-function LanguageSwitcher({ language, choose }: { language: Language; choose: (value: Language) => void }) {
-  return <div className="flex items-center text-[11px] font-bold text-white" aria-label="Language">{(["en", "es", "pt"] as const).map((code, index) => <span key={code} className="flex items-center"><Button type="button" variant="ghost" size="sm" onClick={() => choose(code)} aria-pressed={language === code} className={`h-8 px-2 uppercase hover:bg-transparent hover:text-gold ${language === code ? "underline decoration-gold decoration-2 underline-offset-6" : ""}`}>{code}</Button>{index < 2 && <span className="opacity-40">|</span>}</span>)}</div>;
 }
 
 function SectionMarker({ number }: { number: string }) { return <div className="absolute left-3 top-24 hidden items-center gap-3 lg:flex"><span className="font-display text-sm text-gold">{number}</span><span className="h-px w-8 bg-gold" /></div>; }
