@@ -118,17 +118,15 @@ function Index() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-body-text">
-      <header className="relative z-40 border-b border-light-gray bg-white">
-        <div className="mx-auto flex h-22 max-w-7xl items-center justify-between px-4 lg:px-10">
-          <a href="#top" className="flex min-w-0 items-center gap-3" aria-label="Matheus Campos home">
+      <header className="relative z-40 border-b border-white/10 bg-navy">
+        <div className="mx-auto flex h-22 max-w-7xl items-center justify-between px-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-10">
+          <a href="#top" className="flex min-w-0 items-center gap-3 justify-self-start" aria-label="Matheus Campos home">
             <Logo className="h-14 w-12 shrink-0" />
-            <span className="min-w-0"><span className="block truncate font-display text-base text-navy sm:text-xl">MATHEUS CAMPOS</span><span className="mt-1 block max-w-62 text-[8px] font-bold uppercase leading-3 tracking-[0.15em] text-gold sm:text-[9px]">{t.subtitle}</span></span>
+            <span className="min-w-0"><span className="block truncate font-display text-base text-gold sm:text-xl">MATHEUS CAMPOS</span><span className="mt-1 block max-w-62 text-[8px] font-bold uppercase leading-3 tracking-[0.15em] text-white sm:text-[9px]">{t.subtitle}</span></span>
           </a>
-          <div className="hidden items-center gap-7 lg:flex">
-            <nav className="flex items-center gap-7 text-sm font-medium text-navy"><a href="#about" className="hover:text-teal">{t.nav.about}</a><a href="#services" className="hover:text-teal">{t.nav.services}</a><a href="#contact" className="hover:text-teal">{t.nav.contact}</a></nav>
-            <LanguageSwitcher language={language} choose={chooseLanguage} light />
-          </div>
-          <Button variant="ghost" size="icon" onClick={() => setMenuOpen(true)} aria-label={t.nav.menu} className="text-navy hover:bg-light-gray lg:hidden"><Menu size={25} /></Button>
+          <nav className="hidden items-center gap-9 text-sm font-medium text-white lg:flex"><a href="#about" className="hover:text-gold">{t.nav.about}</a><a href="#services" className="hover:text-gold">{t.nav.services}</a><a href="#contact" className="hover:text-gold">{t.nav.contact}</a></nav>
+          <div className="hidden justify-self-end lg:flex"><LanguageSwitcher language={language} choose={chooseLanguage} /></div>
+          <Button variant="ghost" size="icon" onClick={() => setMenuOpen(true)} aria-label={t.nav.menu} className="text-white hover:bg-navy-dark hover:text-white lg:hidden"><Menu size={25} /></Button>
         </div>
       </header>
 
@@ -199,8 +197,8 @@ function Index() {
   );
 }
 
-function LanguageSwitcher({ language, choose, light = false }: { language: Language; choose: (value: Language) => void; light?: boolean }) {
-  return <div className={`flex items-center text-[11px] font-bold ${light ? "text-navy" : "text-white"}`} aria-label="Language">{(["en", "es", "pt"] as const).map((code, index) => <span key={code} className="flex items-center"><Button type="button" variant="ghost" size="sm" onClick={() => choose(code)} className={`h-8 px-2 uppercase hover:bg-transparent hover:text-teal ${language === code ? "text-teal" : ""}`}>{code}</Button>{index < 2 && <span className="opacity-40">|</span>}</span>)}</div>;
+function LanguageSwitcher({ language, choose }: { language: Language; choose: (value: Language) => void }) {
+  return <div className="flex items-center text-[11px] font-bold text-white" aria-label="Language">{(["en", "es", "pt"] as const).map((code, index) => <span key={code} className="flex items-center"><Button type="button" variant="ghost" size="sm" onClick={() => choose(code)} aria-pressed={language === code} className={`h-8 px-2 uppercase hover:bg-transparent hover:text-gold ${language === code ? "underline decoration-gold decoration-2 underline-offset-6" : ""}`}>{code}</Button>{index < 2 && <span className="opacity-40">|</span>}</span>)}</div>;
 }
 
 function DecorativeSquares() { return <div aria-hidden="true" className="absolute inset-0 opacity-20"><span className="absolute right-[12%] top-[14%] h-3 w-3 bg-gold" /><span className="absolute right-[43%] top-[34%] h-2 w-2 bg-teal" /><span className="absolute right-[8%] top-[56%] h-5 w-5 border border-teal" /><span className="absolute right-[39%] top-[70%] h-3 w-3 border border-gold" /></div>; }
