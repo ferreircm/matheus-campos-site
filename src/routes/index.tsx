@@ -137,11 +137,11 @@ function Index() {
       </div>}
 
       <section id="top" className="relative min-h-[90vh] overflow-hidden bg-navy text-white">
-        <img src={heroAsset.url} alt="Matheus Campos standing with his arms crossed" className="absolute inset-0 h-full w-full object-cover object-[62%_20%] lg:left-auto lg:w-[78%] lg:object-[70%_25%]" />
+        <img src={heroAsset.url} alt="Matheus Campos standing with his arms crossed" className="absolute inset-0 h-full w-full object-cover object-[62%_0%] lg:left-auto lg:w-[78%] lg:object-[70%_0%]" />
         {/* Darken behind the text so it stays readable: bottom-up on phones, left-to-right on desktop. */}
         <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy via-navy/75 to-navy/10 lg:bg-gradient-to-r lg:from-navy lg:from-25% lg:via-navy/70 lg:via-45% lg:to-transparent lg:to-75%" />
         <div className="relative mx-auto flex min-h-[90vh] max-w-7xl items-end px-5 lg:items-center lg:px-10">
-          <div className="z-10 w-full pb-28 pt-8 text-center lg:max-w-xl lg:pb-36 lg:pt-14 lg:text-left">
+          <div className="z-10 w-full pb-36 pt-8 text-center lg:max-w-xl lg:pb-48 lg:pt-14 lg:text-left">
             <blockquote className="relative mx-auto max-w-2xl font-display text-[clamp(2rem,4vw,4.15rem)] leading-[1.25] lg:mx-0"><span className="mr-2 text-gold">“</span>{t.quote}<span className="ml-2 text-gold">”</span></blockquote>
             <p className="mt-6 text-sm font-medium text-gold sm:text-base">{t.attribution}</p>
             <p className="mt-7 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.15em] lg:justify-start"><MapPin size={16} className="text-gold" />{t.nationwide}</p>
@@ -152,9 +152,9 @@ function Index() {
         </div>
       </section>
 
-      <section id="services" className="service-pattern relative pb-20 sm:pb-24">
-        <div className="relative z-20 mx-auto -mt-20 grid max-w-7xl grid-cols-2 gap-3 px-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-5 lg:px-10">
-          {t.services.map((label, index) => { const Icon = serviceIcons[index] ?? Shield; return <button key={label} type="button" onClick={() => goToContact(t.interests[index])} className={`group relative flex min-h-44 flex-col items-center justify-center overflow-hidden rounded-md bg-white p-4 text-center shadow-xl transition duration-300 hover:-translate-y-1 sm:min-h-48 ${index === 4 ? "col-span-2 mx-auto w-[calc(50%-0.375rem)] sm:col-span-1 sm:w-auto" : ""}`}><Icon size={40} className="text-gold" strokeWidth={1.6} /><span className="mt-5 font-display text-sm leading-6 text-navy sm:text-base">{label}</span><span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-teal transition-transform group-hover:scale-x-100" /></button>; })}
+      <section id="services" className="service-pattern relative flow-root pb-20 sm:pb-24">
+        <div className="relative z-20 mx-auto -mt-24 grid max-w-7xl grid-cols-2 gap-3 px-4 md:grid-cols-5 md:gap-4 lg:-mt-32 lg:gap-5 lg:px-10">
+          {t.services.map((label, index) => { const Icon = serviceIcons[index] ?? Shield; return <button key={label} type="button" onClick={() => goToContact(t.interests[index])} className={`group relative flex min-h-44 flex-col items-center justify-center overflow-hidden rounded-md bg-white p-4 text-center shadow-xl transition duration-300 hover:-translate-y-1 sm:min-h-48 md:p-3 lg:p-4 ${index === 4 ? "col-span-2 mx-auto w-[calc(50%-0.375rem)] md:col-span-1 md:mx-0 md:w-auto" : ""}`}><Icon size={40} className="text-gold" strokeWidth={1.6} /><span className="mt-5 font-display text-sm leading-6 text-navy sm:text-base md:text-sm lg:text-base">{label}</span><span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-teal transition-transform group-hover:scale-x-100" /></button>; })}
         </div>
       </section>
 
