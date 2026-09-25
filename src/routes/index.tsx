@@ -15,7 +15,8 @@ const aboutAsset = { url: "/images/matheus-library.jpg" };
 const headshotAsset = { url: "/images/matheus-headshot.webp" };
 const ogAsset = { url: "/images/matheus-og.jpg" };
 
-const WEB3FORMS_ACCESS_KEY = "";
+// Public by design: Web3Forms keys can only deliver to the inbox they were created for.
+const WEB3FORMS_ACCESS_KEY = "e1e1487f-8189-4b58-a927-3f3f3ad3abcd";
 const serviceIcons = [Shield, TrendingUp, Home, HeartHandshake, Users];
 const states = [
   "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
