@@ -101,10 +101,11 @@ function Index() {
     }
     setFormState("sending"); setFormMessage("");
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ access_key: WEB3FORMS_ACCESS_KEY, subject: `New website lead: ${name} (${state})`, name, phone, state, email, interest, message, botcheck }),
-      });
+      // Sent as FormData, not JSON: a JSON body triggers a CORS preflight that Web3Forms rejects.
+      const payload = new FormData();
+      const fields = { access_key: WEB3FORMS_ACCESS_KEY, subject: `New website lead: ${name} (${state})`, from_name: "Matheus Campos Website", name, phone, state, email, interest, message, botcheck };
+      for (const [key, value] of Object.entries(fields)) payload.append(key, value);
+      const response = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { Accept: "application/json" }, body: payload });
       const result = await response.json() as { success?: boolean };
       if (!response.ok || !result.success) throw new Error("Submission failed");
       setFormState("success"); form.reset(); setSelectedInterest("");
